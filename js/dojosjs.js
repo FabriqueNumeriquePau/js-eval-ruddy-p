@@ -13,19 +13,21 @@ document.querySelector("body > main > section > aside > div").onmouseout=rond;
 
 // Étape 2 trouver comment trigger les 3 div pour changer leur visibility en "visible" et leur height en "auto"
 
-let arrow1 = document.querySelector("body > main > section > section > article:nth-child(1) > div");
-let arrow2 = document.querySelector("body > main > section > section > article:nth-child(2) > div");
-let arrow3 = document.querySelector("body > main > section > section > article:nth-child(3) > div");
 
-function show() {
-    arrow1.style.visibility="visible";
-    arrow1.style.height="auto";
-    arrow2.style.visibility="visible";
-    arrow2.style.height="auto";
-    arrow3.style.visibility="visible";
-    arrow3.style.height="auto";
+let arrows = document.getElementsByClassName("picto");
+
+for (let i = 0; i < arrows.length; i++) {
+  let fleche = arrows.item(i);
+  fleche.addEventListener("click", () => {
+    let arrow = fleche.parentNode.nextElementSibling;
+    if (arrow.style.visibility !== "visible") {
+      arrow.style.visibility = "visible";
+      arrow.style.height = "auto";
+    } else {
+      arrow.style.visibility = "hidden";
+      arrow.style.height = "0";
+    }
+  });
 }
 
-addEventListener("click", show);
-
-// Étape 3 charger le fichier JSON
+// Etape 3
